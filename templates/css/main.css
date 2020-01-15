@@ -30,6 +30,27 @@ figure.figure figcaption {
 	padding: 20px 30px;
 }
 
+div.dateContainer {
+	background-color: rgb(233, 233, 233);
+	position: relative;
+	height: 40px;
+	padding: 10px;
+}
+
+div.dateContainer input.date {
+	height: 35px;
+	width: 300px;
+	border: 1px black solid;
+	border-radius: 3px;
+	box-sizing: border-box;
+	padding: 5px;
+}
+
+div.dateContainer label {
+	color: #333333;
+	font-weight: lighter;
+}
+
 #copyright, #date {
 	color: #303030;
 }

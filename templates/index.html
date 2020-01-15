@@ -7,11 +7,17 @@
     <link rel="stylesheet" href="css/main.css">
     <title>APOD</title>
 </head>
-<body>
+<body onload= "load()">
     
 	<div class= "container">
+		<div class= "dateContainer">
+			<label>Enter date: </label>
+			<input type= "date" class= "date" />
+			<button onclick= "load()">Load Content</button>
+		</div>
+		
 		<div id="info">
-			<h1 id="title">404 Error! The APOD is not available now!</h1>
+			<h1 id="title"></h1>
 			
 			<figure class= "figure">
 				
@@ -29,6 +35,10 @@
 			
 			<button onclick= "downloadPDF()">Download PDF</button>
 		</div>
+		
+		<div class= "pdf" style="display: none;"></div>
+		
+		<div class= "error"></div>
 		
 		<hr />
 		<footer>
