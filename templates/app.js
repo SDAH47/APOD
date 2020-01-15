@@ -15,9 +15,9 @@ function load() {
 	const explanationUI = document.querySelector('#explanation');
 	const imgUI = document.querySelector('#nasaImg');
 	
-	var val = dateContent.value.split( '-' ).map( e => Number( e ) );
+	var val = new Date(date.getFullYear() + '-' + ( month < 10 ? '0' + month : month ) + '-' + ( date.getDate() ));
 	
-	var c_date = val[ 2 ] < date.getDate() && val[ 1 ] <= month && ( val[ 0 ] <= date.getFullYear() && val[ 0 ] >= 1995 );
+	var c_date = new Date( dateContent.value ) < val;
 	
 	if( c_date ) {
 		const dataJSON = nasa.getData( dateContent.value )
