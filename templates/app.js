@@ -5,9 +5,11 @@ month = date.getMonth() + 1;
 
 dateContent.value = date.getFullYear() + '-' + ( month < 10 ? '0' + month : month ) + '-' + ( date.getDate() - 1 );
 
+var title;
+
 function load() {
 	const nasa = new Nasa;
-	const titleUI = document.querySelector('#title');
+	const titleUI = title = document.querySelector('#title');
 	const copyrightUI = document.querySelector('#copyright');
 	const dateUI = document.querySelector('#date');
 	const explanationUI = document.querySelector('#explanation');
@@ -60,5 +62,5 @@ function downloadPDF() {
       {
         'width': 180,'elementHandlers': elementHandler
       });
-        doc.save('abc.pdf');
+        doc.save(`${title}.pdf`);
 }
