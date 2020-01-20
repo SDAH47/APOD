@@ -27,6 +27,9 @@ function load() {
 			copyrightUI.innerText=data.copyright;
 			dateUI.innerText = data.date;
 			explanationUI.innerText = content = data.explanation;
+			
+			var req = fetch( 'http://localhost:5000/image/' + btoa( data.url ) );
+			
 			imgUI.src = url = data.url;
 		});
 		
@@ -37,7 +40,22 @@ function load() {
 	}
 }
 
-function downloadPDF() {
+function toDataURL(url, callback) {
+	return fetch(url)
+	.then(response => response.blob())
+	.then(blob => new Promise((resolve, reject) => {
+	  const reader = new FileReader()
+	  reader.onloadend = () => resolve(reader.result)
+	  reader.onerror = reject
+	  reader.readAsDataURL(blob)
+	}))
+}
+
+async function downloadPDF() {
+	alert( 'If the image is not clear in the PDF Please wait for some time to make it be loaded in the background.' )
+	
+	var res = await toDataURL('img');
+	
 	var doc = new jsPDF();
     doc.setFont("courier");
     var elementHandler = {
@@ -49,12 +67,12 @@ function downloadPDF() {
     subText = document.querySelector( '#subText' ),
     p = document.querySelector( 'p' );
     
-    var src = document.querySelector( 'div.pdf' );
-    console.log(src)
-    
     source.appendChild( title.cloneNode( true ) );
     source.appendChild( subText.cloneNode( true ) );
     source.appendChild( p.cloneNode( true ) );
+    
+    doc.addImage( res, 'JPEG', 20, 100, 150, 150 );
+    
     doc.fromHTML(
       source,
       15,
